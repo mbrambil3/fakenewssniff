@@ -270,6 +270,7 @@ def main():
         tester.test_analyze_empty_input,
         tester.test_analyze_with_normal_text,
         tester.test_analyze_with_suspicious_text,
+        tester.test_analyze_problematic_url,  # The specific failing URL
         tester.test_analyze_with_reliable_url,
         tester.test_scraping_functionality,
         tester.test_analyze_invalid_url,
