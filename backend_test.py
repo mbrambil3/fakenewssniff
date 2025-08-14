@@ -221,7 +221,7 @@ def main():
     print("=" * 50)
     
     # Use the public endpoint from frontend .env
-    tester = FakeNewsSniffAPITester("http://localhost:8001")
+    tester = FakeNewsSniffAPITester("http://10.64.130.223:8001")
     
     # Run all tests
     test_methods = [
