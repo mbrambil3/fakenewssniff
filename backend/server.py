@@ -228,7 +228,7 @@ class NewsCredibilityAnalyzer:
             domain = urlparse(url_or_text).netloc.lower()
             if any(reliable in domain for reliable in self.reliable_sources):
                 factors.append("✅ Fonte conhecida e confiável")
-                suspicion_score -= 20
+                suspicion_score -= 35  # Major reduction for reliable sources
             else:
                 factors.append("⚠️ Fonte desconhecida ou não verificada")
                 suspicion_score += 15
