@@ -311,7 +311,7 @@ class NewsCredibilityAnalyzer:
             suspicion_score += 5
         
         # Normalize score to 0-100 range
-        suspicion_score = max(0, min(100, suspicion_score + 30))  # Base adjustment
+        suspicion_score = max(0, min(100, suspicion_score + 15))  # Reduced base adjustment
         
         analysis_details.update({
             'content_length': content_length,
