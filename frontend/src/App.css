@@ -1,0 +1,199 @@
+/* Additional specific styles for App component */
+
+/* Enhanced glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Thermometer specific enhancements */
+.thermometer-container {
+  position: relative;
+  background: linear-gradient(to bottom, 
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 20px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.thermometer-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 27px;
+  box-shadow: 
+    0 0 20px rgba(255, 255, 255, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced gradient backgrounds */
+.bg-trust-gradient {
+  background: linear-gradient(to top, 
+    #059669 0%,
+    #10B981 30%,
+    #34D399 70%,
+    #6EE7B7 100%
+  );
+}
+
+.bg-caution-gradient {
+  background: linear-gradient(to top,
+    #D97706 0%,
+    #F59E0B 30%,
+    #FBBF24 70%,
+    #FCD34D 100%
+  );
+}
+
+.bg-danger-gradient {
+  background: linear-gradient(to top,
+    #DC2626 0%,
+    #EF4444 30%,
+    #F87171 70%,
+    #FCA5A5 100%
+  );
+}
+
+/* Button enhancements */
+.btn-analyze {
+  position: relative;
+  overflow: hidden;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.btn-analyze::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.btn-analyze:hover::before {
+  left: 100%;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Enhanced loading states */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top: 3px solid #ffffff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+/* Improved shimmer effect for loading */
+.shimmer {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.1) 25%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    rgba(255, 255, 255, 0.1) 75%
+  );
+  background-size: 200px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Factor items enhancement */
+.factor-item {
+  backdrop-filter: blur(10px);
+  border-left: 4px solid #3B82F6;
+  transition: all 0.3s ease;
+}
+
+.factor-item:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive improvements */
+@media (max-width: 1024px) {
+  .thermometer-container {
+    height: 300px !important;
+    width: 50px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .thermometer-container {
+    height: 250px !important;
+    width: 45px !important;
+  }
+  
+  .glass {
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .thermometer-container {
+    height: 200px !important;
+    width: 40px !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .thermometer-fill,
+  .btn-analyze,
+  .factor-item {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid #000;
+  }
+  
+  .thermometer-container {
+    border: 3px solid #000;
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+.btn-analyze:focus,
+textarea:focus {
+  outline: 3px solid #60A5FA;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .btn-analyze,
+  footer {
+    display: none;
+  }
+  
+  .glass {
+    background: white;
+    border: 1px solid #ccc;
+  }
+}
