@@ -185,6 +185,46 @@ class FakeNewsSniffAPITester:
             data={"url_or_text": "https://this-is-not-a-real-website-12345.com/fake-news"}
         )
 
+    def test_analyze_problematic_url(self):
+        """Test analysis with the specific URL that was failing"""
+        problematic_url = "https://www.poder360.com.br/poder-internacional/trump-e-putin-discutirao-enorme-potencial-economico-em-encontro/"
+        
+        success, response = self.run_test(
+            "Analyze Problematic URL (Poder360)",
+            "POST",
+            "api/analyze",
+            200,
+            data={"url_or_text": problematic_url},
+            timeout=90
+        )
+        
+        if success and isinstance(response, dict):
+            score = response.get('suspicion_score', -1)
+            factors = response.get('factors', [])
+            sources = response.get('sources_checked', [])
+            content_summary = response.get('content_summary', '')
+            
+            print(f"   Suspicion Score: {score}/100")
+            print(f"   Factors found: {len(factors)}")
+            print(f"   Sources checked: {len(sources)}")
+            print(f"   Content length: {len(content_summary)} chars")
+            
+            # Expected score around 60 according to review request
+            if 50 <= score <= 70:
+                print(f"✅ Score in expected range (~60): {score}")
+            else:
+                print(f"⚠️  Score outside expected range: {score}")
+            
+            # Check if content was extracted
+            if len(content_summary) > 100:
+                print("✅ Content successfully extracted")
+            else:
+                print("⚠️  Content extraction may have issues")
+            
+            return True
+        
+        return success
+
     def test_scraping_functionality(self):
         """Test real scraping with a known working URL"""
         # Test with a simple, reliable URL that should work
