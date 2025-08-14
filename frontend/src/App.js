@@ -199,7 +199,7 @@ function App() {
     setResult(null);
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/analyze`, {
+      const response = await axios.post(`${API_BASE_URL}/analyze`, {
         url_or_text: inputValue.trim()
       }, {
         timeout: 60000 // 60 seconds timeout for scraping
